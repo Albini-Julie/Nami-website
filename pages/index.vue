@@ -5,6 +5,13 @@
     :primaryColorText="primaryColorText"
     :secondaryColorText="secondaryColorText"
   />
+  <meteo
+    :primaryColor="primaryColor"
+    :secondaryColor="secondaryColor"
+    :primaryColorText="primaryColorText"
+    :secondaryColorText="secondaryColorText"
+    :ville="ville"
+  />
 </template>
 
 <script setup>
