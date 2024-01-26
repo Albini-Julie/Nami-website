@@ -2,7 +2,9 @@
   <div class="introduction">
     <h1 class="introduction__title">Le site qui vous ouvre</h1>
     <h1 class="introduction__title --monde">au monde</h1>
-    <fleche />
+    <div class="introduction__icon">
+      <IconsFleche id="scrollButton" />
+    </div>
   </div>
 </template>
 
@@ -12,10 +14,18 @@
   padding: 0; /* Ajustez les rembourrages selon vos besoins */
   height: 110vh; /* 100% de la hauteur de la fenêtre visible */
   overflow: hidden; /* Pour éviter tout débordement de contenu */
+  position: relative;
 
   background-image: url("/ciel-degage.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+
+  &__icon {
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 
   &__title {
     position: relative;
@@ -67,5 +77,13 @@ defineProps({
   secondaryColor: String,
   primaryColorText: String,
   secondaryColorText: String,
+});
+
+document.getElementById("scrollButton").addEventListener("click", function () {
+  // Sélectionnez l'élément vers lequel vous souhaitez faire défiler
+  var targetElement = document.querySelector(".bottom-center-element");
+
+  // Faites défiler la page jusqu'à l'élément
+  targetElement.scrollIntoView({ behavior: "smooth" });
 });
 </script>
