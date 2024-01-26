@@ -11,6 +11,10 @@
     :primaryColorText="primaryColorText"
     :secondaryColorText="secondaryColorText"
     :ville="ville"
+    :temp_act="temp_act"
+    :temp_min="temp_min"
+    :temp_max="temp_max"
+    :weather="weather"
   />
 </template>
 
@@ -22,6 +26,11 @@ let primaryColor = ref("");
 let secondaryColor = ref("");
 let primaryColorText = ref("");
 let secondaryColorText = ref("");
+let ville = ref("");
+let temp_act = ref("");
+let temp_min = ref("");
+let temp_max = ref("");
+let weather = ref("");
 
 const coordMe = reactive({ latitude: 0, longitude: 0 });
 
@@ -58,13 +67,15 @@ const getEnseign = (latitude, longitude) => {
       console.log(data);
       //données
       const meteo = document.getElementById("meteo");
-      const temperature = data.main.temp;
-      const weatherDescription = data.weather[0].description;
+      temp_act.value = data.main.temp;
+      temp_min.value = data.main.temp_min;
+      temp_max.value = data.main.temp_max;
+      weather.value = data.weather[0].description;
 
-      const ville = data.name;
+      ville.value = data.name;
       //changement de la couleur
 
-      switch (weatherDescription) {
+      switch (weather.value) {
         case "couvert":
           primaryColor.value = "#AD00FF";
           secondaryColor.value = "#00FFA3";
