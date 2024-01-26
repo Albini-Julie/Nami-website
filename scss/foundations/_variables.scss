@@ -1,0 +1,24 @@
+@import "functions";
+
+//media queries
+$small: 600px;
+$medium: 1000px;
+$large: 1800px;
+
+//Typographies
+
+$small-font-size: rem(13);
+$regular-font-size: rem(20);
+$medium-font-size: rem(24);;
+$big-font-size: rem(40);
+$giant-font-size: rem(90);
+$gianter-font-size: rem(120);
+
+//Couleurs
+$primary-color: #000000;
+$secondary-color: #ff0000;
+
+//Typography
+$primary-font-family: Montserrat;
+$secondary-font-family: Oswald;
+$tertiary-font-family: Moul;
