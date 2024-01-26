@@ -1,18 +1,21 @@
 <template>
   <div class="introduction">
-    <img class="introduction__img" src="/ciel-degage.jpg" />
     <h1 class="introduction__title">Le site qui vous ouvre</h1>
     <h1 class="introduction__title --monde">au monde</h1>
+    <fleche />
   </div>
 </template>
 
 <style lang="scss" scoped>
 .introduction {
-  &__img {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-  }
+  margin: 0; /* Ajustez les marges selon vos besoins */
+  padding: 0; /* Ajustez les rembourrages selon vos besoins */
+  height: 110vh; /* 100% de la hauteur de la fenêtre visible */
+  overflow: hidden; /* Pour éviter tout débordement de contenu */
+
+  background-image: url("/ciel-degage.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 
   &__title {
     position: relative;
