@@ -177,8 +177,8 @@ const getEnseign = (latitude, longitude) => {
         default:
           primaryColor.value = "#D00000";
           secondaryColor.value = "#FFF500";
-          primaryColorText.value = "#000000";
-          secondaryColorText.value = "#FFFFFF";
+          primaryColorText.value = "#FFFFFF";
+          secondaryColorText.value = "#000000";
           break;
       }
 
