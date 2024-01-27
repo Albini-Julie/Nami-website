@@ -148,6 +148,9 @@
       @include medium-up {
         font-size: 40px;
       }
+      @include large-up {
+        font-size: 50px;
+      }
     }
   }
 }
