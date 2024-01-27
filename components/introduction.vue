@@ -78,12 +78,4 @@ defineProps({
   primaryColorText: String,
   secondaryColorText: String,
 });
-
-document.getElementById("scrollButton").addEventListener("click", function () {
-  // Sélectionnez l'élément vers lequel vous souhaitez faire défiler
-  var targetElement = document.querySelector(".bottom-center-element");
-
-  // Faites défiler la page jusqu'à l'élément
-  targetElement.scrollIntoView({ behavior: "smooth" });
-});
 </script>
