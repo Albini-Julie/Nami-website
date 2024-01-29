@@ -259,6 +259,9 @@ export default {
     @include large-up {
       font-size: $big-font-size;
     }
+    @include x-large-up {
+      font-size: rem(50);
+    }
   }
 
   &__icon {
@@ -300,22 +303,25 @@ export default {
     @include large-up {
       padding: 15px 40px;
     }
+    @include large-up {
+      padding: 15px 80px;
+    }
   }
 
   &__title {
     margin: 0px;
     font-family: $secondary-font-family;
-    font-size: rem(70);
+    font-size: rem(50);
+    display: flex;
+    justify-content: center;
     @include medium-up {
-      font-size: $bigger-font-size;
+      font-size: rem(75);
     }
     @include large-up {
-      font-size: rem(80);
-      display: flex;
-      justify-content: center;
+      font-size: rem(65);
     }
     @include x-large-up {
-      font-size: $gianter-font-size;
+      font-size: rem(110);
     }
   }
 
@@ -331,7 +337,7 @@ export default {
       line-height: 50px;
     }
     @include large-up {
-      font-size: rem(90);
+      font-size: rem(80);
       line-height: 50px;
     }
     @include x-large-up {
