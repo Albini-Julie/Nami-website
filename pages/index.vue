@@ -16,7 +16,12 @@
     :temp_max="temp_max"
     :weather="weather"
   />
-  <pays />
+  <pays
+    :primaryColor="primaryColor"
+    :secondaryColor="secondaryColor"
+    :primaryColorText="primaryColorText"
+    :secondaryColorText="secondaryColorText"
+  />
 </template>
 
 <script setup>

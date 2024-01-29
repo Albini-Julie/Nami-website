@@ -1,11 +1,25 @@
 <template>
-  <div v-for="pays in listePays" :key="pays.id_pay">
-    <CardPays
-      :heure="pays.heure"
-      :nom="pays.nom"
-      :latitude="pays.capitale.latitude"
-      :longitude="pays.capitale.longitude"
-    />
+  <div v-for="(pays, index) in listePays" :key="pays.id_pay">
+    <div v-if="index % 2 === 0">
+      <CardPays
+        :heure="pays.heure"
+        :nom="pays.nom"
+        :latitude="pays.capitale.latitude"
+        :longitude="pays.capitale.longitude"
+        :color="primaryColor"
+        :colorText="primaryColorText"
+      />
+    </div>
+    <div v-else>
+      <CardPays
+        :heure="pays.heure"
+        :nom="pays.nom"
+        :latitude="pays.capitale.latitude"
+        :longitude="pays.capitale.longitude"
+        :color="secondaryColor"
+        :colorText="secondaryColorText"
+      />
+    </div>
   </div>
 </template>
 <script>
@@ -23,6 +37,12 @@ import {
 } from "firebase/firestore";
 
 export default {
+  props: {
+    primaryColor: String,
+    primaryColorText: String,
+    secondaryColor: String,
+    secondaryColorText: String,
+  },
   data: function () {
     return {
       listePays: [],
