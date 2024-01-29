@@ -1,6 +1,11 @@
 <template>
   <div v-for="pays in listePays" :key="pays.id_pay">
-    <CardPays :heure="pays.heure" :nom="pays.nom" />
+    <CardPays
+      :heure="pays.heure"
+      :nom="pays.nom"
+      :latitude="pays.capitale.latitude"
+      :longitude="pays.capitale.longitude"
+    />
   </div>
 </template>
 <script>
