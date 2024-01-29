@@ -16,6 +16,7 @@
     :temp_max="temp_max"
     :weather="weather"
   />
+  <pays />
 </template>
 
 <script setup>
