@@ -63,6 +63,7 @@
         <h2>alité</h2>
       </div>
     </div>
+    <Button :color="color" :colorText="colorText">Lire l'article</Button>
   </div>
 </template>
 
@@ -78,6 +79,8 @@ export default {
     weather: String,
     latitude: String,
     longitude: String,
+    color: String,
+    colorText: String,
   },
 
   setup(props) {

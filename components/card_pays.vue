@@ -6,6 +6,8 @@
     :weather="weather"
     :latitude="latitude"
     :longitude="longitude"
+    :color="color"
+    :colorText="colorText"
   />
 </template>
 
@@ -19,5 +21,7 @@ defineProps({
   weather: String,
   latitude: String,
   longitude: String,
+  color: String,
+  colorText: String,
 });
 </script>
