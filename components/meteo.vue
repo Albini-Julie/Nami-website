@@ -11,7 +11,46 @@
       <div class="meteo__blocIcons">
         <div class="meteo__blocTemp">
           <!--Icon soleil-->
-          <IconsSoleil class="meteo__icon" :color="primaryColorText" />
+          <IconsSoleil
+            v-if="icons === 'soleil'"
+            class="meteo__icon"
+            :color="primaryColorText"
+          />
+          <IconsNuage
+            v-if="icons === 'nuage'"
+            class="meteo__icon --nuage"
+            :color="primaryColorText"
+          />
+          <IconsSoleil-nuage
+            v-if="icons === 'soleil-nuage'"
+            class="meteo__icon"
+            :color="primaryColorText"
+          />
+          <IconsPluie
+            v-if="icons === 'pluie'"
+            class="meteo__icon --long"
+            :color="primaryColorText"
+          />
+          <IconsNeige
+            v-if="icons === 'neige'"
+            class="meteo__icon"
+            :color="primaryColorText"
+          />
+          <IconsOrage
+            v-if="icons === 'orage'"
+            class="meteo__icon"
+            :color="primaryColorText"
+          />
+          <IconsBrouillard
+            v-if="icons === 'brouillard'"
+            class="meteo__icon --nuage"
+            :color="primaryColorText"
+          />
+          <IconsCoeur
+            v-if="icons === 'coeur'"
+            class="meteo__icon --long"
+            :color="primaryColorText"
+          />
         </div>
         <!--Température minimale-->
         <div class="meteo__blocTemp">
@@ -96,6 +135,40 @@
       height: rem(150);
     }
 
+    &.--long {
+      width: rem(60);
+      height: rem(50);
+      @include medium-up {
+        width: rem(80);
+        height: rem(70);
+      }
+      @include large-up {
+        width: rem(130);
+        height: rem(110);
+      }
+      @include x-large-up {
+        width: rem(150);
+        height: rem(130);
+      }
+    }
+
+    &.--nuage {
+      width: rem(70);
+      height: rem(50);
+      @include medium-up {
+        width: rem(110);
+        height: rem(70);
+      }
+      @include large-up {
+        width: rem(160);
+        height: rem(110);
+      }
+      @include x-large-up {
+        width: rem(180);
+        height: rem(130);
+      }
+    }
+
     &.--fleche {
       width: rem(35);
       height: rem(35);
@@ -157,6 +230,8 @@
 </style>
 
 <script setup>
+import { defineProps, ref, onMounted, watch } from "vue";
+
 const props = defineProps({
   primaryColor: String,
   secondaryColor: String,
@@ -168,4 +243,85 @@ const props = defineProps({
   temp_max: String,
   weather: String,
 });
+
+const icons = ref("");
+
+const updateIcons = () => {
+  switch (props.weather) {
+    case "ciel dégagé":
+      icons.value = "soleil";
+      break;
+
+    case "couvert":
+      icons.value = "nuage";
+      break;
+
+    case "nuageux":
+      icons.value = "nuage";
+      break;
+
+    case "partiellement nuageux":
+      icons.value = "soleil-nuage";
+      break;
+
+    case "peu nuageux":
+      icons.value = "soleil-nuage";
+      break;
+
+    case "légère pluie":
+      icons.value = "pluie";
+      break;
+
+    case "pluie modérée":
+      icons.value = "pluie";
+      break;
+
+    case "forte pluie":
+      icons.value = "pluie";
+      break;
+
+    case "légères chutes de neige":
+      icons.value = "neige";
+      break;
+
+    case "chutes de neige importantes":
+      icons.value = "neige";
+      break;
+
+    case "chutes de neige modérées":
+      icons.value = "neige";
+      break;
+
+    case "orage":
+      icons.value = "orage";
+      break;
+
+    case "brouillard":
+      icons.value = "brouillard";
+      break;
+
+    case "brume":
+      icons.value = "brouillard";
+      break;
+
+    case "bruine":
+      icons.value = "brouillard";
+      break;
+
+    default:
+      icons.value = "coeur";
+      break;
+  }
+};
+
+onMounted(() => {
+  updateIcons();
+});
+
+watch(
+  () => props.weather,
+  () => {
+    updateIcons();
+  }
+);
 </script>
