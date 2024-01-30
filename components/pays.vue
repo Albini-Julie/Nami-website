@@ -8,6 +8,13 @@
         :longitude="pays.capitale.longitude"
         :color="primaryColor"
         :colorText="primaryColorText"
+        :img_spe="pays.specialite.img_spe"
+        :img_dra="pays.img_dra"
+        :pop="pays.nb_hab"
+        :superficie="pays.superficie"
+        :capitale="pays.capitale.nom"
+        :specialite="pays.specialite.nom"
+        :langue="pays.langue"
       />
     </div>
     <div v-else>
@@ -18,6 +25,13 @@
         :longitude="pays.capitale.longitude"
         :color="secondaryColor"
         :colorText="secondaryColorText"
+        :img_spe="pays.specialite.img_spe"
+        :img_dra="pays.img_dra"
+        :pop="pays.nb_hab"
+        :superficie="pays.superficie"
+        :capitale="pays.capitale.nom"
+        :specialite="pays.specialite.nom"
+        :langue="pays.langue"
       />
     </div>
   </div>

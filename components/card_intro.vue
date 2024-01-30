@@ -63,7 +63,6 @@
         <h2>alité</h2>
       </div>
     </div>
-    <Button :color="color" :colorText="colorText">Lire l'article</Button>
   </div>
 </template>
 
@@ -170,6 +169,10 @@ export default {
               icon.value = "brouillard";
               break;
 
+            case "fumée":
+              icon.value = "brouillard";
+              break;
+
             default:
               icon.value = "coeur";
               break;
@@ -236,16 +239,6 @@ export default {
 
 <style lang="scss" scoped>
 .pays {
-  margin: 0;
-
-  height: 300vh;
-  overflow: hidden;
-  position: relative;
-
-  background-image: url("/Italie.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 15% 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -380,6 +373,9 @@ export default {
     gap: rem(20);
     @include large-up {
       gap: rem(20);
+    }
+    @include x-large-up {
+      gap: rem(80);
     }
   }
 }
