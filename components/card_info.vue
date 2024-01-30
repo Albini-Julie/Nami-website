@@ -64,8 +64,10 @@
 
 <style lang="scss" scoped>
 .infos {
+  @mixin only-small {
+    width: 90%;
+  }
   position: relative;
-  width: 90%;
   margin: 0px auto;
 
   &__imgs {
@@ -116,12 +118,21 @@
     padding: 30px 10px;
     gap: rem(30);
     margin: rem(0) auto;
+    width: 40vh;
+
     @include medium-up {
       justify-content: space-evenly;
       flex-direction: row;
       padding: 30px 40px;
+      width: 60vh;
+      max-width: 50vh;
     }
     @include large-up {
+      width: 70vh;
+      margin-top: rem(50);
+      max-width: 80vh;
+    }
+    @include x-large-up {
       width: 60vh;
     }
   }

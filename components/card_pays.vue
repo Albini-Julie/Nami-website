@@ -10,30 +10,56 @@
       :color="color"
       :colorText="colorText"
     />
-    <card_info
-      :color="color"
-      :colorText="colorText"
-      :langue="langue"
-      :capitale="capitale"
-      :img_spe="img_spe"
-      :img_dra="img_dra"
-      :superficie="superficie"
-      :pop="pop"
-      :specialite="specialite"
-    />
+    <div class="card__content">
+      <card_info
+        class="card__infos"
+        :color="color"
+        :colorText="colorText"
+        :langue="langue"
+        :capitale="capitale"
+        :img_spe="img_spe"
+        :img_dra="img_dra"
+        :superficie="superficie"
+        :pop="pop"
+        :specialite="specialite"
+      />
+      <card_news :color="color" :colorText="colorText" :chemin="chemin" />
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .card {
   margin: 0;
-  height: 300vh;
+  height: fit-content;
   overflow: hidden;
   position: relative;
   background-image: url("/Italie.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 15% 0px;
+  padding: 30% 0px;
+  @include large-up {
+    padding: 15% 0px;
+  }
+
+  &__infos {
+    margin-top: rem(50);
+    @include large-up {
+      margin-top: rem(0);
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: rem(50);
+    @include x-large-up {
+      flex-direction: row;
+      padding: 0% 5%;
+    }
+  }
 }
 </style>
 
@@ -55,6 +81,7 @@ export default {
     capitale: String,
     specialite: String,
     langue: String,
+    chemin: String,
   },
 };
 </script>

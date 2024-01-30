@@ -15,6 +15,7 @@
         :capitale="pays.capitale.nom"
         :specialite="pays.specialite.nom"
         :langue="pays.langue"
+        :chemin="pays.news"
       />
     </div>
     <div v-else>
@@ -32,6 +33,7 @@
         :capitale="pays.capitale.nom"
         :specialite="pays.specialite.nom"
         :langue="pays.langue"
+        :chemin="pays.news"
       />
     </div>
   </div>
