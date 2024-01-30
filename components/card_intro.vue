@@ -59,8 +59,8 @@
       </div>
       <!-- Titre actualité -->
       <div class="pays__actualite">
-        <h2>l'actu</h2>
-        <h2>alité</h2>
+        <h2 style="margin: 0px">l'actu</h2>
+        <h2 style="margin: 0px">alité</h2>
       </div>
     </div>
   </div>
@@ -162,6 +162,10 @@ export default {
               break;
 
             case "brume":
+              icon.value = "brouillard";
+              break;
+
+            case "bruine légère":
               icon.value = "brouillard";
               break;
 
@@ -322,23 +326,23 @@ export default {
   }
 
   &__actualite {
+    display: none;
     font-size: $bigger-font-size;
     font-family: $primary-font-family;
     color: $secondary-color;
     text-transform: uppercase;
     font-size: rem(70);
-    line-height: 50px;
+
     @include medium-up {
       font-size: $bigger-font-size;
-      line-height: 50px;
     }
     @include large-up {
       font-size: rem(80);
-      line-height: 50px;
+
+      display: block;
     }
     @include x-large-up {
       font-size: $gianter-font-size;
-      line-height: 50px;
     }
   }
 
@@ -348,6 +352,10 @@ export default {
     align-items: center;
     @include large-up {
       flex-direction: row;
+      justify-content: space-evenly;
+      align-items: start;
+    }
+    @include x-large-up {
       justify-content: space-evenly;
       align-items: center;
     }

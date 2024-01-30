@@ -308,6 +308,10 @@ const updateIcons = () => {
       icons.value = "brouillard";
       break;
 
+    case "bruine légère":
+      icons.value = "brouillard";
+      break;
+
     case "fumée":
       icons.value = "brouillard";
       break;
