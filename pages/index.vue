@@ -23,6 +23,7 @@
     :secondaryColorText="secondaryColorText"
   />
   <question :color="secondaryColor" :colorText="secondaryColorText" />
+  <carte />
 </template>
 
 <script setup>
