@@ -22,6 +22,7 @@
     :primaryColorText="primaryColorText"
     :secondaryColorText="secondaryColorText"
   />
+  <question :color="secondaryColor" :colorText="secondaryColorText" />
 </template>
 
 <script setup>

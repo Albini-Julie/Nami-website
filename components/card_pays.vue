@@ -31,12 +31,12 @@
 <style lang="scss" scoped>
 .card {
   margin: 0;
-  height: fit-content;
-  overflow: hidden;
-  position: relative;
+
   background-image: url("/Italie.jpg");
+  background-size: cover; /* Utilisez "contain" à la place si vous préférez que l'image soit contenue dans toute la zone */
+  background-position: center; /* Ajustez la position si nécessaire */
   background-repeat: no-repeat;
-  background-size: cover;
+  height: 100%; /* Assurez-vous que la*/
   padding: 30% 0px;
   @include large-up {
     padding: 15% 0px;
