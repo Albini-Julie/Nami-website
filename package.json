@@ -13,8 +13,12 @@
     "axios": "^1.6.7",
     "firebase": "^10.7.2",
     "nuxt": "^3.9.3",
+    "nuxt3-leaflet": "^1.0.12",
     "sass": "^1.70.0",
     "vue": "^3.4.14",
     "vue-router": "^4.2.5"
+  },
+  "dependencies": {
+    "nuxt-leaflet": "^0.0.27"
   }
 }
