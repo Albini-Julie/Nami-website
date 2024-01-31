@@ -134,6 +134,7 @@
     }
     @include x-large-up {
       width: 60vh;
+      margin-top: rem(0);
     }
   }
 
