@@ -230,6 +230,7 @@ export default {
     font-family: $primary-font-family;
     font-size: rem(30);
     font-weight: 500;
+    width: fit-content;
 
     @include large-up {
       width: fit-content;
@@ -244,6 +245,7 @@ export default {
   &__icon {
     width: rem(40);
     height: rem(40);
+    min-width: rem(40);
     @include large-up {
       width: rem(60);
       height: rem(60);

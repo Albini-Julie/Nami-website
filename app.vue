@@ -7,14 +7,18 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .cursor-container {
-  position: fixed;
-  width: 25px;
-  height: 25px;
-  pointer-events: none;
-  z-index: 9999;
-  mix-blend-mode: difference;
+  display: none;
+  @include large-up {
+    display: block;
+    position: fixed;
+    width: 25px;
+    height: 25px;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+  }
 }
 #follow {
   position: absolute;
