@@ -31,7 +31,6 @@
 <style lang="scss" scoped>
 .card {
   margin: 0;
-
   background-image: url("/Italie.jpg");
   background-size: cover; /* Utilisez "contain" à la place si vous préférez que l'image soit contenue dans toute la zone */
   background-position: center; /* Ajustez la position si nécessaire */

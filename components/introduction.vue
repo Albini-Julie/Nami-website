@@ -69,13 +69,18 @@
     }
   }
 }
+
+//curseur
 </style>
 
-<script setup>
-defineProps({
-  primaryColor: String,
-  secondaryColor: String,
-  primaryColorText: String,
-  secondaryColorText: String,
-});
+<script>
+//curseur
+export default {
+  props: {
+    primaryColor: String,
+    secondaryColor: String,
+    primaryColorText: String,
+    secondaryColorText: String,
+  },
+};
 </script>
