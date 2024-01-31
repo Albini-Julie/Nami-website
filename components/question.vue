@@ -165,10 +165,13 @@ export default {
 
   &__question {
     font-family: $primary-font-family;
-    font-size: $medium-font-size;
+    font-size: rem(30);
     font-weight: 500;
+    @include large-up {
+      font-size: $medium-font-size;
+    }
     @include x-large-up {
-      font-size: rem(45);
+      font-size: rem(40);
     }
   }
 
@@ -176,6 +179,9 @@ export default {
     padding: 0% rem(10);
     @include large-up {
       padding-left: 5%;
+    }
+    @include x-large-up {
+      padding: 0% 5%;
     }
   }
 
@@ -185,10 +191,14 @@ export default {
     justify-content: space-evenly;
     align-items: start;
     padding: 0px 20px;
+    @include medium-up {
+      padding: 0px 50px;
+    }
 
     @include large-up {
       flex-direction: row;
       margin-top: 5%;
+      padding: 0px 0px;
     }
   }
 
@@ -234,14 +244,22 @@ export default {
     width: rem(40);
     height: rem(40);
     @include large-up {
+      width: rem(60);
+      height: rem(60);
+    }
+    @include x-large-up {
       width: rem(70);
       height: rem(70);
     }
 
     &.--coeur {
-      width: rem(55);
+      width: rem(40);
       height: rem(35);
       @include large-up {
+        width: rem(60);
+        height: rem(50);
+      }
+      @include x-large-up {
         width: rem(70);
         height: rem(60);
       }
