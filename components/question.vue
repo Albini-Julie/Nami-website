@@ -54,6 +54,7 @@ export default {
     color: String,
     colorText: String,
   },
+
   setup() {
     const questions = ref([]);
     const shuffledPropositions = ref([]);
