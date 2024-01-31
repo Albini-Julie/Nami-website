@@ -77,6 +77,7 @@
       max-width: rem(950);
       flex-direction: row;
       gap: rem(50);
+      justify-content: space-between;
     }
   }
 }

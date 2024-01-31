@@ -23,7 +23,11 @@
     :secondaryColorText="secondaryColorText"
   />
   <question :color="secondaryColor" :colorText="secondaryColorText" />
-  <carte />
+  <carte
+    :latitudeUti="coordMe.latitude"
+    :longitudeUti="coordMe.longitude"
+    :ville="ville"
+  />
 </template>
 
 <script setup>
