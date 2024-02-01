@@ -24,6 +24,7 @@
   />
   <question :color="secondaryColor" :colorText="secondaryColorText" />
   <carte
+    v-if="showMap"
     :latitudeUti="coordMe.latitude"
     :longitudeUti="coordMe.longitude"
     :ville="ville"
@@ -33,6 +34,19 @@
 <script setup>
 //import éléments de vue
 import { reactive, ref } from "vue";
+import {
+  latitude1,
+  latitude2,
+  latitude3,
+  longitude1,
+  longitude2,
+  longitude3,
+  capitale1,
+  capitale2,
+  capitale3,
+} from "@/config.js";
+
+const showMap = ref(false);
 
 let primaryColor = ref("");
 let secondaryColor = ref("");
@@ -217,6 +231,9 @@ const getEnseign = (latitude, longitude) => {
 
 // Utilisation de onMounted pour appeler locMe dès que le composant est monté
 onMounted(() => {
-  locMe();
+  setTimeout(() => {
+    locMe();
+    showMap.value = true;
+  }, 2500);
 });
 </script>
