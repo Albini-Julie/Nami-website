@@ -51,6 +51,17 @@ import {
   getDoc,
   onSnapshot,
 } from "firebase/firestore";
+import {
+  latitude1,
+  latitude2,
+  latitude3,
+  longitude1,
+  longitude2,
+  longitude3,
+  capitale1,
+  capitale2,
+  capitale3,
+} from "@/config.js";
 
 export default {
   props: {
@@ -142,6 +153,19 @@ export default {
         }
 
         this.listePays = selectedPays;
+
+        //récupération des latitudes et longitudes des trois capitales des pays pour la carte
+        latitude1.value = this.listePays[0].capitale.latitude;
+        longitude1.value = this.listePays[0].capitale.longitude;
+        capitale1.value = this.listePays[0].capitale.nom;
+
+        latitude2.value = this.listePays[1].capitale.latitude;
+        longitude2.value = this.listePays[1].capitale.longitude;
+        capitale2.value = this.listePays[1].capitale.nom;
+
+        latitude3.value = this.listePays[2].capitale.latitude;
+        longitude3.value = this.listePays[2].capitale.longitude;
+        capitale3.value = this.listePays[2].capitale.nom;
       } catch (error) {
         console.error("Erreur lors de la récupération des pays", error);
       }

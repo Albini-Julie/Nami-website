@@ -158,6 +158,7 @@ export default {
     font-family: $primary-font-family;
     font-size: rem(60);
     font-weight: 600;
+    color: v-bind(colorText);
     @include large-up {
       font-size: $bigger-font-size;
       width: 70%;
@@ -168,6 +169,7 @@ export default {
     font-family: $primary-font-family;
     font-size: rem(30);
     font-weight: 500;
+    color: v-bind(colorText);
     @include large-up {
       font-size: $medium-font-size;
     }
@@ -211,6 +213,7 @@ export default {
     flex-direction: column;
     align-items: start;
     justify-content: center;
+    color: v-bind(colorText);
   }
 
   &__prop {
