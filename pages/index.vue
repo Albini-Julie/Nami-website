@@ -231,8 +231,8 @@ const getEnseign = (latitude, longitude) => {
 
 // Utilisation de onMounted pour appeler locMe dès que le composant est monté
 onMounted(() => {
+  locMe();
   setTimeout(() => {
-    locMe();
     showMap.value = true;
   }, 2500);
 });
