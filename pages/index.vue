@@ -25,6 +25,8 @@
   <question :color="secondaryColor" :colorText="secondaryColorText" />
   <carte
     v-if="showMap"
+    :secondaryColor="secondaryColor"
+    :primaryColor="primaryColor"
     :latitudeUti="coordMe.latitude"
     :longitudeUti="coordMe.longitude"
     :ville="ville"
@@ -48,10 +50,10 @@ import {
 
 const showMap = ref(false);
 
-let primaryColor = ref("");
-let secondaryColor = ref("");
-let primaryColorText = ref("");
-let secondaryColorText = ref("");
+let primaryColor = ref("#D00000");
+let secondaryColor = ref("#FFF500");
+let primaryColorText = ref("#FFFFFF");
+let secondaryColorText = ref("#000000");
 let ville = ref("");
 let temp_act = ref("");
 let temp_min = ref("");
