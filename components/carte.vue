@@ -62,41 +62,42 @@ const props = defineProps([
 const zoom = ref(2);
 
 // Fonction pour convertir les degrés en radians
-const deg2rad = (deg) => deg * (Math.PI / 180);
+let deg2rad = (deg) => deg * (Math.PI / 180);
 
 // Fonction pour calculer la distance haversine entre deux points
-const haversine = (lat1, lon1, lat2, lon2) => {
-  const R = 6371; // Rayon de la Terre en kilomètres
-  const dLat = deg2rad(lat2 - lat1);
-  const dLon = deg2rad(lon2 - lon1);
+let haversine = (lat1, lon1, lat2, lon2) => {
+  console.log(lat1, lat2, lon1, lon2);
+  let R = 6371; // Rayon de la Terre en kilomètres
+  let dLat = deg2rad(lat2 - lat1);
+  let dLon = deg2rad(lon2 - lon1);
 
-  const a =
+  let a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
     Math.cos(deg2rad(lat1)) *
       Math.cos(deg2rad(lat2)) *
       Math.sin(dLon / 2) *
       Math.sin(dLon / 2);
 
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-  const distance = R * c; // Distance en kilomètres
+  let distance = R * c; // Distance en kilomètres
 
   return distance;
 };
 
 // Conversion des coordonnées en float
-const latUti = parseFloat(props.latitudeUti);
-const lonUti = parseFloat(props.longitudeUti);
-const lat1 = parseFloat(latitude1.value);
-const lon1 = parseFloat(longitude1.value);
-const lat2 = parseFloat(latitude2.value);
-const lon2 = parseFloat(longitude2.value);
-const lat3 = parseFloat(latitude3.value);
-const lon3 = parseFloat(longitude3.value);
+let latUti = parseFloat(props.latitudeUti);
+let lonUti = parseFloat(props.longitudeUti);
+let lat1 = parseFloat(latitude1.value);
+let lon1 = parseFloat(longitude1.value);
+let lat2 = parseFloat(latitude2.value);
+let lon2 = parseFloat(longitude2.value);
+let lat3 = parseFloat(latitude3.value);
+let lon3 = parseFloat(longitude3.value);
 
 // Arrondir à l'unité supérieure si chiffre après la virgule >= 0.5 et arrondir à l'unité inférieure si chiffre après la virgule < à 0.5
-const roundDistance = (distance) => {
-  const roundedDistance = Math.floor(distance); // Arrondir à l'unité inférieure par défaut
+let roundDistance = (distance) => {
+  let roundedDistance = Math.floor(distance); // Arrondir à l'unité inférieure par défaut
 
   // Si la partie décimale est égale ou supérieure à 0.5, arrondir à l'unité supérieure
   if (distance % 1 >= 0.5) {
@@ -105,10 +106,11 @@ const roundDistance = (distance) => {
 
   return roundedDistance;
 };
+console.log(latUti, lonUti, lat1, lat2, lat2, lon1, lon2, lon3);
 
-const distance1 = roundDistance(haversine(latUti, lonUti, lat1, lon1));
-const distance2 = roundDistance(haversine(latUti, lonUti, lat2, lon2));
-const distance3 = roundDistance(haversine(latUti, lonUti, lat3, lon3));
+let distance1 = roundDistance(haversine(latUti, lonUti, lat1, lon1));
+let distance2 = roundDistance(haversine(latUti, lonUti, lat2, lon2));
+let distance3 = roundDistance(haversine(latUti, lonUti, lat3, lon3));
 </script>
 
 <style>
