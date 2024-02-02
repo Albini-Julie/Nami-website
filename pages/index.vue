@@ -31,6 +31,7 @@
     :longitudeUti="coordMe.longitude"
     :ville="ville"
   />
+  <Footer />
 </template>
 
 <script setup>
