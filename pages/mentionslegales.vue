@@ -62,7 +62,7 @@
       </div>
     </div>
   </div>
-  <Footer />
+  <Footer titre="Page d'accueil" lien="/" hover />
 </template>
 
 <style lang="scss" scoped>

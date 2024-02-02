@@ -31,7 +31,7 @@
     :longitudeUti="coordMe.longitude"
     :ville="ville"
   />
-  <Footer />
+  <Footer titre="Mentions légales" lien="/mentionslegales" />
 </template>
 
 <script setup>
