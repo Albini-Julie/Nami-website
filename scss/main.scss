@@ -63,3 +63,16 @@ body {
     font-weight: 400;
     font-style: normal;
 }
+
+.leaflet-container .leaflet-tooltip {
+    opacity: 1;
+    background: #fff;
+    /* Couleur de fond blanche */
+    color: #333;
+    /* Couleur du texte */
+    border-radius: 6px;
+    padding: 8px 12px;
+    /* Espace intérieur */
+    font-family: $primary-font-family;
+    font-size: 14px;
+}
