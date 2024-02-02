@@ -11,7 +11,10 @@
       <!-- Ajouter des marqueurs -->
       <!--Marqeur de l'utilisateur-->
       <LMarker :lat-lng="[latitudeUti, longitudeUti]" :icon="customIconUti">
-        <LTooltip :content="`Vous vous trouvez ici, à ${ville}`"></LTooltip>
+        <LTooltip
+          class="custom-tooltip"
+          :content="`Vous vous trouvez ici, à ${ville}`"
+        ></LTooltip>
       </LMarker>
       <!--Marqeur de la première capitale-->
       <LMarker :lat-lng="[latitude1, longitude1]" :icon="customIcon">
@@ -34,6 +37,12 @@
     </LMap>
   </div>
 </template>
+
+<style lang="scss" scoped>
+body {
+  margin: 0;
+}
+</style>
 
 <script setup>
 import { ref, defineProps, onMounted } from "vue";
@@ -59,6 +68,7 @@ const props = defineProps([
   "ville",
 ]);
 
+// Customisation des marqueurs (changement de couleurs)
 const iconUti = ref("");
 console.log(props.secondaryColor);
 switch (props.secondaryColor) {
@@ -124,6 +134,7 @@ const customIcon = L.icon({
   popupAnchor: [0, -25], // Ajustez l'ancre du popup selon vos besoins
 });
 
+// zoom de la carte au début
 const zoom = ref(2);
 
 // Fonction pour convertir les degrés en radians
@@ -150,16 +161,6 @@ let haversine = (lat1, lon1, lat2, lon2) => {
   return distance;
 };
 
-// Conversion des coordonnées en float
-let latUti = parseFloat(props.latitudeUti);
-let lonUti = parseFloat(props.longitudeUti);
-let lat1 = parseFloat(latitude1.value);
-let lon1 = parseFloat(longitude1.value);
-let lat2 = parseFloat(latitude2.value);
-let lon2 = parseFloat(longitude2.value);
-let lat3 = parseFloat(latitude3.value);
-let lon3 = parseFloat(longitude3.value);
-
 // Arrondir à l'unité supérieure si chiffre après la virgule >= 0.5 et arrondir à l'unité inférieure si chiffre après la virgule < à 0.5
 let roundDistance = (distance) => {
   let roundedDistance = Math.floor(distance); // Arrondir à l'unité inférieure par défaut
@@ -171,15 +172,31 @@ let roundDistance = (distance) => {
 
   return roundedDistance;
 };
-console.log(latUti, lonUti, lat1, lat2, lat2, lon1, lon2, lon3);
 
-let distance1 = roundDistance(haversine(latUti, lonUti, lat1, lon1));
-let distance2 = roundDistance(haversine(latUti, lonUti, lat2, lon2));
-let distance3 = roundDistance(haversine(latUti, lonUti, lat3, lon3));
+const distance1 = ref(null);
+const distance2 = ref(null);
+const distance3 = ref(null);
+
+onMounted(() => {
+  // Conversion des coordonnées en float
+  let latUti = parseFloat(props.latitudeUti);
+  let lonUti = parseFloat(props.longitudeUti);
+  let lat1 = parseFloat(latitude1.value);
+  let lon1 = parseFloat(longitude1.value);
+
+  // Calculating distances after ensuring the values are defined
+  distance1.value = roundDistance(haversine(latUti, lonUti, lat1, lon1));
+  console.log("Distance 1:", distance1.value);
+
+  // Rest of the distance calculations
+  let lat2 = parseFloat(latitude2.value);
+  let lon2 = parseFloat(longitude2.value);
+  let lat3 = parseFloat(latitude3.value);
+  let lon3 = parseFloat(longitude3.value);
+
+  distance2.value = roundDistance(haversine(latUti, lonUti, lat2, lon2));
+  console.log("Distance 2:", distance2.value);
+  distance3.value = roundDistance(haversine(latUti, lonUti, lat3, lon3));
+  console.log("Distance 3:", distance3.value);
+});
 </script>
-
-<style>
-body {
-  margin: 0;
-}
-</style>

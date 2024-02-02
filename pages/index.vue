@@ -236,6 +236,6 @@ onMounted(() => {
   locMe();
   setTimeout(() => {
     showMap.value = true;
-  }, 2500);
+  }, 3000);
 });
 </script>
