@@ -1,6 +1,6 @@
 <template>
-  <div style="height: 100vh; width: 100%¨">
-    <LMap ref="map" :zoom="zoom" :center="[0, 0]">
+  <div style="height: 100vh; display: flex; align-items: center; width: 100%¨">
+    <LMap ref="map" :zoom="zoom" :center="[0, 0]" :options="mapOptions">
       <LTileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&amp;copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
@@ -135,7 +135,15 @@ const customIcon = L.icon({
 });
 
 // zoom de la carte au début
-const zoom = ref(2);
+const zoom = ref(3);
+
+const mapOptions = {
+  dragging: true,
+  touchZoom: false,
+  scrollWheelZoom: false,
+  doubleClickZoom: false,
+  boxZoom: false,
+};
 
 // Fonction pour convertir les degrés en radians
 let deg2rad = (deg) => deg * (Math.PI / 180);
