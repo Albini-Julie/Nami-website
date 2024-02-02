@@ -240,9 +240,9 @@ const props = defineProps({
   primaryColorText: String,
   secondaryColorText: String,
   ville: String,
-  temp_act: String,
-  temp_min: String,
-  temp_max: String,
+  temp_act: Number,
+  temp_min: Number,
+  temp_max: Number,
   weather: String,
 });
 
