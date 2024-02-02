@@ -1,7 +1,10 @@
 <template>
   <div class="footer">
-    <NuxtLink class="footer__text" to="/mentionslegales"
-      ><p class="e-footer__text">Mentions légales</p></NuxtLink
+    <NuxtLink
+      class="footer__text"
+      :to="lien"
+      :title="hover ? messageAuHover : ''"
+      ><p class="e-footer__text">{{ titre }}</p></NuxtLink
     >
 
     <h4 class="footer__text --copy">
@@ -43,4 +46,17 @@
 }
 </style>
 
-<script></script>
+<script>
+export default {
+  props: {
+    titre: String,
+    lien: String,
+    hover: Boolean,
+  },
+  data() {
+    return {
+      messageAuHover: "Pensez à rafraichir la page principale !",
+    };
+  },
+};
+</script>
