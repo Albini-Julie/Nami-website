@@ -5,7 +5,7 @@
       <!--Image du drapeau en mobile-->
       <img
         class="infos__img --mobile"
-        src="/drapeau_italie.jpg"
+        :src="props.img_dra"
         alt="image du drapeau du pays"
       />
       <!--Les informations-->
@@ -62,20 +62,20 @@
         <!--Image du drapeau en desktop-->
         <img
           class="infos__img --desktop"
-          src="/drapeau_italie.jpg"
+          :src="props.img_dra"
           alt="image du drapeau du pays"
         />
         <!--Image de la spécialité en desktop-->
         <img
           class="infos__img --desktop"
-          src="/Pizza.jpg"
+          :src="props.img_spe"
           alt="image de la spécialité du pays"
         />
       </div>
       <!--Image de la spécialité en mobile-->
       <img
         class="infos__img --mobile"
-        src="/Pizza.jpg"
+        :src="props.img_spe"
         alt="image de la spécialité du pays"
       />
     </div>
@@ -276,7 +276,7 @@ de colorText contenant le code hexadécimal de la couleur du texte-->
 // Importation de defineProps
 import { defineProps } from "vue";
 
-defineProps({
+const props = defineProps({
   img_dra: String,
   img_spe: String,
   pop: String,
