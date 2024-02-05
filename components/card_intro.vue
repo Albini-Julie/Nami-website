@@ -170,6 +170,10 @@ export default {
               icon.value = "pluie";
               break;
 
+            case "petites averses":
+              icon.value = "pluie";
+              break;
+
             case "légères chutes de neige":
               icon.value = "neige";
               break;
@@ -241,7 +245,7 @@ export default {
     // Requête vers l'API WorldTime pour avoir l'heure du pays avec la props heure contenant la localisation du pays
     // Enregistrement de la valeur dans la ref time
     const fetchTime = () => {
-      const apiUrl = `http://worldtimeapi.org/api/timezone/${props.heure}`;
+      const apiUrl = `https://worldtimeapi.org/api/timezone/${props.heure}`;
       axios
         .get(apiUrl)
         .then((response) => {

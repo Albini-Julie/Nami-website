@@ -321,6 +321,10 @@ const updateIcons = () => {
       icons.value = "pluie";
       break;
 
+    case "petites averses":
+      icons.value = "pluie";
+      break;
+
     case "légères chutes de neige":
       icons.value = "neige";
       break;
