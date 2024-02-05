@@ -1,8 +1,13 @@
 <template>
+  <!--Bloc contenant toute la page mentions légales-->
   <div class="mentionslegales">
+    <!--Titre-->
     <h1 class="mentionslegales__title">Mentions legales</h1>
+    <!--Bloc contenus-->
     <div class="mentionslegales__content">
-      <div class="test">
+      <!--Première colonne-->
+      <div class="mentionslegales__colonne">
+        <!--Appel du composant bloc-legal avec les différentes données-->
         <bloc-legal
           :content="['Nami', 'nami.albini.fr']"
           titre="Identification du site"
@@ -34,7 +39,8 @@
           titre="Propriété intellectuelle"
         />
       </div>
-      <div class="test">
+      <!--Deuxième colonne-->
+      <div class="mentionslegales__colonne">
         <bloc-legal
           :content="[
             'Aucune donnée sur l’utilisateur n’est enregistrée ou conservée. Toutes les éventuelles données demandées comme la localisation ne serve qu’au design du site et ne sont ni conservées ni vendues.',
@@ -62,10 +68,12 @@
       </div>
     </div>
   </div>
+  <!--Importation du composant Footer-->
   <Footer titre="Page d'accueil" lien="/" message />
 </template>
 
 <style lang="scss" scoped>
+// Styles du bloc général
 .mentionslegales {
   margin: 0;
   padding: rem(30) rem(20);
@@ -77,6 +85,7 @@
   background-repeat: no-repeat;
   background-size: cover;
 
+  // Styles du titre
   &__title {
     color: $secondary-color;
     font-family: $tertiary-font-family;
@@ -97,6 +106,19 @@
     }
   }
 
+  // Styles des colonnes
+  &__colonne {
+    display: flex;
+    flex-direction: column;
+    gap: rem(20);
+    @include large-up {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+    }
+  }
+
+  // Styles du bloc contenant les contenus
   &__content {
     display: flex;
     flex-direction: column;
@@ -113,17 +135,4 @@
     }
   }
 }
-
-.test {
-  display: flex;
-  flex-direction: column;
-  gap: rem(20);
-  @include large-up {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-  }
-}
 </style>
-
-<script></script>
