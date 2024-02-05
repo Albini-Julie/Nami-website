@@ -166,6 +166,13 @@ const getEnseign = (latitude, longitude) => {
           secondaryColorText.value = "#FFFFFF";
           break;
 
+        case "petites averses":
+          primaryColor.value = "#FAFF00";
+          secondaryColor.value = "#DB00FF";
+          primaryColorText.value = "#000000";
+          secondaryColorText.value = "#FFFFFF";
+          break;
+
         case "légères chutes de neige":
           primaryColor.value = "#FF63DD";
           secondaryColor.value = "#001F8B";
