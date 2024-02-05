@@ -1,6 +1,10 @@
+<!--Intégration de la partie météo-->
 <template>
+  <!--Bloc contenant toute la partie météo-->
   <div class="meteo">
+    <!--Bloc contenant le contenu de la page-->
     <div class="meteo__content">
+      <!--Bloc contenant la phrase-->
       <div style="display: flex; justify-content: center">
         <p class="meteo__text">
           Vous vous trouvez à {{ ville }} le temps est {{ weather }} et il fait
@@ -8,6 +12,7 @@
           de {{ temp_min }}°C et la température maximale de {{ temp_max }}°C.
         </p>
       </div>
+      <!--Bloc contenant les icons météo et température-->
       <div class="meteo__blocIcons">
         <div class="meteo__blocTemp">
           <!--Icon soleil-->
@@ -16,56 +21,67 @@
             class="meteo__icon"
             :color="primaryColorText"
           />
+          <!--Icon nuage-->
           <IconsNuage
             v-if="icons === 'nuage'"
             class="meteo__icon --nuage"
             :color="primaryColorText"
           />
+          <!--Icon soleil-nuage-->
           <IconsSoleil-nuage
             v-if="icons === 'soleil-nuage'"
             class="meteo__icon"
             :color="primaryColorText"
           />
+          <!--Icon pluie-->
           <IconsPluie
             v-if="icons === 'pluie'"
             class="meteo__icon --long"
             :color="primaryColorText"
           />
+          <!--Icon neige-->
           <IconsNeige
             v-if="icons === 'neige'"
             class="meteo__icon"
             :color="primaryColorText"
           />
+          <!--Icon orage-->
           <IconsOrage
             v-if="icons === 'orage'"
             class="meteo__icon"
             :color="primaryColorText"
           />
+          <!--Icon brouillard-->
           <IconsBrouillard
             v-if="icons === 'brouillard'"
             class="meteo__icon --nuage"
             :color="primaryColorText"
           />
+          <!--Icon coeur-->
           <IconsCoeur
             v-if="icons === 'coeur'"
             class="meteo__icon --long"
             :color="primaryColorText"
           />
         </div>
-        <!--Température minimale-->
+        <!-- Bloc température minimale-->
         <div class="meteo__blocTemp">
+          <!--Icon fleche du bas-->
           <IconsFleche_bas
             class="meteo__icon --fleche"
             :color="primaryColorText"
           />
+          <!--Température minimale-->
           <p class="meteo__text --temp">{{ temp_min }}°C</p>
         </div>
-        <!--Température minimale-->
+        <!--Bloc température maximale-->
         <div class="meteo__blocTemp">
+          <!--Icon fleche du haut-->
           <IconsFleche_haut
             class="meteo__icon --fleche"
             :color="primaryColorText"
           />
+          <!--Température maximale-->
           <p class="meteo__text --temp">{{ temp_max }}°C</p>
         </div>
       </div>
@@ -74,6 +90,7 @@
 </template>
 
 <style lang="scss" scoped>
+// Styles du bloc contenant toute la partie météo
 .meteo {
   height: fit-content;
   width: 100%;
@@ -91,6 +108,7 @@
   @include x-large-up {
   }
 
+  // Styles du bloc contenant le contenu de la partie météo
   &__content {
     display: flex;
     flex-direction: column;
@@ -104,6 +122,7 @@
     }
   }
 
+  // Styles du bloc contenant les icons météo et température
   &__blocIcons {
     display: flex;
     justify-content: center;
@@ -119,6 +138,7 @@
     }
   }
 
+  // Styles des icons
   &__icon {
     width: rem(60);
     height: rem(60);
@@ -135,6 +155,7 @@
       height: rem(150);
     }
 
+    // Styles des icons en longeur
     &.--long {
       width: rem(60);
       height: rem(50);
@@ -152,6 +173,7 @@
       }
     }
 
+    // Styles du l'icon nuage
     &.--nuage {
       width: rem(70);
       height: rem(50);
@@ -169,6 +191,7 @@
       }
     }
 
+    // Styles des icons fleches
     &.--fleche {
       width: rem(35);
       height: rem(35);
@@ -187,6 +210,7 @@
     }
   }
 
+  // Styles du bloc contenant une température et son icon
   &__blocTemp {
     display: flex;
     align-items: center;
@@ -197,6 +221,7 @@
     }
   }
 
+  // Styles des textes
   &__text {
     color: v-bind(primaryColorText);
     font-family: $primary-font-family;
@@ -216,6 +241,7 @@
       font-size: 70px;
     }
 
+    // Styles des textes des témpératures
     &.--temp {
       font-size: 30px;
       @include medium-up {
@@ -232,8 +258,19 @@
 </style>
 
 <script setup>
+// Importation des outils utiles
 import { defineProps, ref, onMounted, watch } from "vue";
 
+//Création des props
+// primaryColor contient le code hexadécimal de la première couleur à utiliser pour le contenu
+// secondaryColor contient le code hexadécimal de la seconde couleur à utiliser pour le contenu
+// primaryColorText contient le code hexadécimal de la couleur à utiliser pour le texte du contenu utilisant primaryColor
+// secondaryColorText contient le code hexadécimal de la couleur à utiliser pour le texte du contenu utilisant secondaryColor
+// ville contient le nom de la ville où se trouve l'utilisateur
+// temp_act contient la température qui fait actuellement chez l'utilisateur
+// temp_min contient la température qu'il fera au minimum chez l'utilisateur
+// temp_max contient la température qu'il fera au maximum chez l'utilisateur
+// weahter contient le temps qu'il fait chez l'utilisateur
 const props = defineProps({
   primaryColor: String,
   secondaryColor: String,
@@ -246,8 +283,10 @@ const props = defineProps({
   weather: String,
 });
 
+// Création d'une ref icon qui contiendra le nom de l'icon météo à afficher
 const icons = ref("");
 
+// Choix de l'icon à afficher en fonction de la valeur de la props weather
 const updateIcons = () => {
   switch (props.weather) {
     case "ciel dégagé":
@@ -290,6 +329,10 @@ const updateIcons = () => {
       icons.value = "neige";
       break;
 
+    case "chutes de neige":
+      icons.value = "neige";
+      break;
+
     case "chutes de neige modérées":
       icons.value = "neige";
       break;
@@ -303,6 +346,10 @@ const updateIcons = () => {
       break;
 
     case "brume":
+      icons.value = "brouillard";
+      break;
+
+    case "brume sèche":
       icons.value = "brouillard";
       break;
 
@@ -324,10 +371,12 @@ const updateIcons = () => {
   }
 };
 
+// Au montage du composant on appelle updateIcons()
 onMounted(() => {
   updateIcons();
 });
 
+// On vérifie souvent la valeur de la props weather pour changer en temps réel l'icon météo
 watch(
   () => props.weather,
   () => {

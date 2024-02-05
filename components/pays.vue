@@ -1,5 +1,8 @@
+<!--Intégration du pays-->
 <template>
+  <!--Intégration des pays aléatoires dans la liste listePays-->
   <div v-for="(pays, index) in listePays" :key="pays.id_pay">
+    <!--Intégration avec primaryColor-->
     <div v-if="index % 2 === 0">
       <CardPays
         :heure="pays.heure"
@@ -18,6 +21,7 @@
         :chemin="pays.news"
       />
     </div>
+    <!--Intégration avec secondaryColor-->
     <div v-else>
       <CardPays
         :heure="pays.heure"
@@ -39,6 +43,7 @@
   </div>
 </template>
 <script>
+// import des outils utiles
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 import {
@@ -51,6 +56,17 @@ import {
   getDoc,
   onSnapshot,
 } from "firebase/firestore";
+
+// Import des variables globales
+// latitude1 contient la latitude de la première capitale
+// longitude1 contient la longitude de la première capitale
+// latitude2 contient la latitude de la seconde capitale
+// longitude2 contient la longitude de la seconde capitale
+// latitude3 contient la latitude de la troisième capitale
+// longitude3 contient la longitude de la troisième capitale
+// capitale1 contient le nom de la première captiale
+// capitale2 contient le nom de la seconde captiale
+// capitale3 contient le nom de la troisième captiale
 import {
   latitude1,
   latitude2,
@@ -63,6 +79,11 @@ import {
   capitale3,
 } from "@/config.js";
 
+// Création des props
+// primaryColor contient le code hexadécimal de la première couleur à utiliser pour le contenu
+// secondaryColor contient le code hexadécimal de la seconde couleur à utiliser pour le contenu
+// primaryColorText contient le code hexadécimal de la couleur à utiliser pour le texte du contenu utilisant primaryColor
+// secondaryColorText contient le code hexadécimal de la couleur à utiliser pour le texte du contenu utilisant secondaryColor
 export default {
   props: {
     primaryColor: String,
@@ -70,15 +91,18 @@ export default {
     secondaryColor: String,
     secondaryColorText: String,
   },
+  // Création de la liste contenant les pays et leurs informations
   data: function () {
     return {
       listePays: [],
     };
   },
+  //Au montage du composant on appelle la fonction getPays()
   mounted() {
     this.getPays();
   },
   methods: {
+    // getPays récupère les données de chaque pays depuis la base de données et les stocke dans listePays
     async getPays() {
       const { firestore } = useFirebase();
       console.log(firestore);
@@ -152,6 +176,7 @@ export default {
           }
         }
 
+        // On range dans listePays les trois pays alétoires et leurs données
         this.listePays = selectedPays;
 
         //récupération des latitudes et longitudes des trois capitales des pays pour la carte
@@ -171,6 +196,7 @@ export default {
       }
     },
 
+    // Fonction qui s'occupe de sélectionner les trois pays aléatoires
     getRandomElements(array, numberOfElements) {
       const shuffledArray = array.slice().sort(() => 0.5 - Math.random());
       return shuffledArray.slice(0, numberOfElements);

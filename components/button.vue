@@ -1,10 +1,16 @@
+<!--Intégration du bouton-->
 <template>
-  <a :href="url" target="_blank"
-    ><button class="button"><slot></slot></button
+  <!--Lien du bouton-->
+  <a :href="url" target="_blank">
+    <!--Bouton-->
+    <button class="button"><slot></slot></button
   ></a>
 </template>
 
 <script>
+// Création des props color pour la couleur du bouton
+// de colorText pour la couleur du texte du bouton
+// de url pour le lien vers lequel renvoie le bouton
 export default {
   props: {
     color: String,
@@ -14,7 +20,9 @@ export default {
 };
 </script>
 
+<!--Styles du bouton-->
 <style lang="scss" scoped>
+// Styles généraux du bouton
 .button {
   background-color: v-bind(color);
   color: v-bind(colorText);
@@ -41,6 +49,7 @@ export default {
     min-height: rem(75);
   }
 
+  // Styles du bouton au hover
   &:hover {
     background-color: v-bind(colorText);
     color: v-bind(color);

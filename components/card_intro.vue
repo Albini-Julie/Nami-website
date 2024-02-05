@@ -1,58 +1,73 @@
+<!--Intégration de la card intro-->
 <template>
+  <!--Bloc général-->
   <div class="pays">
+    <!--Bloc contenant l'entete de la card Pays (infos + actualité)-->
     <div class="pays__entete">
-      <!-- Titre du pays -->
+      <!--Bloc contenant les infos sur le pays-->
       <div class="pays__back">
+        <!-- Titre du pays -->
         <h2 class="pays__title">{{ nom }}</h2>
-        <!-- Informations de météo sur le pays -->
+        <!-- Informations heure + météo du pays -->
         <div class="pays__meteo">
-          <!-- Heure du pays -->
+          <!-- Bloc heure -->
           <div class="pays__donnees">
+            <!--Icon représentant l'heure-->
             <IconsHorloge class="pays__icon" />
+            <!--Heure du pays-->
             <p class="pays__text">{{ formattedTime }}</p>
           </div>
+          <!--Bloc météo-->
           <div class="pays__donnees">
-            <!--Icon-->
+            <!--Icon Soleil-->
             <IconsSoleil
               v-if="icon === 'soleil'"
               class="pays__icon"
               color="#000000"
             />
+            <!--Icon Nuage-->
             <IconsNuage
               v-if="icon === 'nuage'"
               class="pays__icon --nuage"
               color="#000000"
             />
+            <!--Icon Soleil-Nuage-->
             <IconsSoleil-nuage
               v-if="icon === 'soleil-nuage'"
               class="pays__icon"
               color="#000000"
             />
+            <!--Icon Pluie-->
             <IconsPluie
               v-if="icon === 'pluie'"
               class="pays__icon --long"
               color="#000000"
             />
+            <!--Icon Neige-->
             <IconsNeige
               v-if="icon === 'neige'"
               class="pays__icon"
               color="#000000"
             />
+            <!--Icon Orage-->
             <IconsOrage
               v-if="icon === 'orage'"
               class="pays__icon"
               color="#000000"
             />
+            <!--Icon Brouillard-->
             <IconsBrouillard
               v-if="icon === 'brouillard'"
               class="pays__icon --nuage"
               color="#000000"
             />
+            <!--Icon Coeur-->
             <IconsCoeur
               v-if="icon === 'coeur'"
               class="pays__icon --long"
               color="#000000"
             />
+            <!--Température-->
             <p class="pays__text">{{ temp }}°C</p>
           </div>
         </div>
@@ -67,9 +82,16 @@
 </template>
 
 <script>
+// Importation des outils
 import axios from "axios";
 import { ref, onMounted, onBeforeUnmount, computed, defineProps } from "vue";
 
+// Création des props
+// heure contient la localisation du pays permettant la récupération de l'heure
+// nom contient le nom du pays
+// temp contient la température du pays
+// latitude contient la latitude du pays
+// longitude contient la longitude du pays
 export default {
   props: {
     heure: String,
@@ -83,11 +105,17 @@ export default {
   },
 
   setup(props) {
+    // Création de variables
+    // temp contiendra la température du pays
+    // weather contiendra le temps du pays
+    // icon contiendra le nom de l'icon a afficher
     let temp = ref("");
     let weather = ref("");
     let icon = ref("");
 
+    // Fonction qui récupère la météo dans le pays pour déterminer l'icon a afficher
     const getEnseign = (latitude, longitude) => {
+      // Requête vers l'API OpenWeatherMap
       fetch(
         //`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&lang=fr&appid=50c7f1c20b813764c0e648ea2b791165&units=metric`
         `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&lang=fr&appid=50c7f1c20b813764c0e648ea2b791165&units=metric`
@@ -99,12 +127,13 @@ export default {
           return response.json();
         })
         .then((data) => {
-          // Handle the JSON response data here
           console.log(data);
           //données
           const meteo = document.getElementById("meteo");
+          // Récupération de la temprature du pays dans la ref temp
           temp.value = data.main.temp;
 
+          // Récupération de la météo du pays dans la ref weather
           weather.value = data.weather[0].description;
 
           //changement de l'icon
@@ -145,6 +174,10 @@ export default {
               icon.value = "neige";
               break;
 
+            case "chutes de neige":
+              icon.value = "neige";
+              break;
+
             case "chutes de neige importantes":
               icon.value = "neige";
               break;
@@ -165,6 +198,10 @@ export default {
               icon.value = "brouillard";
               break;
 
+            case "brume sèche":
+              icon.value = "brouillard";
+              break;
+
             case "bruine légère":
               icon.value = "brouillard";
               break;
@@ -181,16 +218,16 @@ export default {
               icon.value = "coeur";
               break;
           }
-
-          // Use the data as needed in your application
         })
         .catch((error) => {
           console.error("Fetch Error:", error);
         });
     };
 
+    // Création d'une ref time qui contiendra l'heure du pays
     const time = ref({});
 
+    // Récupération de l'heure sous le format heure/minutes
     const formattedTime = computed(() => {
       if (time.value.hours) {
         const [datePart, timePart] = time.value.hours.split("T");
@@ -201,6 +238,8 @@ export default {
       }
     });
 
+    // Requête vers l'API WorldTime pour avoir l'heure du pays avec la props heure contenant la localisation du pays
+    // Enregistrement de la valeur dans la ref time
     const fetchTime = () => {
       const apiUrl = `http://worldtimeapi.org/api/timezone/${props.heure}`;
       axios
@@ -217,20 +256,24 @@ export default {
 
     let updateInterval;
 
+    // Appel de la fonction fetchtime toutes les minutes pour avoir l'heure en temps réel
     const startUpdatingTime = () => {
       fetchTime();
       updateInterval = setInterval(fetchTime, 60000);
     };
 
+    // Appel des fonctions startUpdateingTime et getEnseign à chaque fois que le composant est monté pour obtenir la météo et l'heure du pays
     onMounted(() => {
       startUpdatingTime();
       getEnseign(props.latitude, props.longitude);
     });
 
+    // Suppression de l'interval créé par setInterval avant de démonté le composant
     onBeforeUnmount(() => {
       clearInterval(updateInterval);
     });
 
+    // On récupère les variables pour les utiliser ensuite dans le template
     return {
       time,
       formattedTime,
@@ -241,7 +284,9 @@ export default {
 };
 </script>
 
+<!--Styles de la card intro-->
 <style lang="scss" scoped>
+// Styles du bloc contenant la card intro
 .pays {
   display: flex;
   flex-direction: column;
@@ -250,6 +295,7 @@ export default {
     display: block;
   }
 
+  // Styles du texte
   &__text {
     font-family: $secondary-font-family;
     font-size: rem(30);
@@ -264,6 +310,7 @@ export default {
     }
   }
 
+  // Styles des icons
   &__icon {
     width: 39px;
     height: 39px;
@@ -272,6 +319,7 @@ export default {
       height: 50px;
     }
 
+    // Styles de l'icon nuage
     &.--nuage {
       width: 55px;
       height: 39px;
@@ -281,6 +329,7 @@ export default {
       }
     }
 
+    // Styles des icons en longueurs
     &.long {
       width: 39px;
       height: 39px;
@@ -291,6 +340,7 @@ export default {
     }
   }
 
+  // Bloc blanc
   &__back {
     background-color: hsla(0, 0%, 100%, 0.6);
     width: fit-content;
@@ -308,6 +358,7 @@ export default {
     }
   }
 
+  // Styles des titres
   &__title {
     margin: 0px;
     font-family: $secondary-font-family;
@@ -325,6 +376,7 @@ export default {
     }
   }
 
+  // Styles du titre Actualité
   &__actualite {
     display: none;
     font-size: $bigger-font-size;
@@ -346,6 +398,7 @@ export default {
     }
   }
 
+  // Styles du bloc contenant l'ensemble des données de card intro
   &__entete {
     display: flex;
     flex-direction: column;
@@ -361,6 +414,7 @@ export default {
     }
   }
 
+  // Bloc contenant les icons ou les données de l'heure
   &__donnees {
     display: flex;
     justify-content: space-between;
@@ -374,6 +428,7 @@ export default {
     }
   }
 
+  // Bloc contenant les données de la météo et de la température
   &__meteo {
     display: flex;
     justify-content: space-around;

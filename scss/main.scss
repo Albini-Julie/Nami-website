@@ -8,6 +8,7 @@ body {
     padding: 0px;
 }
 
+// Importation des fonts Google Fonts
 @font-face {
     font-family: "Montserrat";
     src: url("/fonts/Montserrat-Bold.ttf") format("truetype");
@@ -64,6 +65,7 @@ body {
     font-style: normal;
 }
 
+// Styles des toolTips de la map
 .leaflet-container .leaflet-tooltip {
     opacity: 1;
     background: #fff;

@@ -1,13 +1,17 @@
 <template>
+  <!--Bloc qui contient le cercle-->
   <div class="cursor-container">
+    <!--Cercle qui suit la souris-->
     <div id="follow" ref="follow"></div>
   </div>
+  <!--Page affichée-->
   <div>
     <NuxtPage />
   </div>
 </template>
 
 <style lang="scss" scoped>
+// Styles bloc qui contient le cercle
 .cursor-container {
   display: none;
   @include large-up {
@@ -20,6 +24,8 @@
     mix-blend-mode: difference;
   }
 }
+
+// Styles du cercle qui suit la souris
 #follow {
   position: absolute;
   width: 25px;
@@ -33,6 +39,7 @@
 </style>
 
 <script>
+// Fonction qui gère le cercle suivant la souris au mouvement
 export default {
   mounted() {
     var cursor = document.getElementById("follow");

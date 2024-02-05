@@ -1,9 +1,11 @@
+<!--Création de la props color-->
 <script setup>
 defineProps({
   color: String,
 });
 </script>
 
+<!--SVG de l'icon utilisant la props color-->
 <template>
   <svg
     viewBox="0 0 70 70"

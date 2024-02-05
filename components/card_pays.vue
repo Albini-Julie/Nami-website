@@ -1,5 +1,8 @@
+<!--Intégration de la card pays-->
 <template>
+  <!--Bloc contenant l'ensemble de la carte-->
   <div class="card">
+    <!--Importation de la card intro-->
     <card_intro
       :heure="heure"
       :nom="nom"
@@ -11,6 +14,7 @@
       :colorText="colorText"
     />
     <div class="card__content">
+      <!--Importation de la card_info-->
       <card_info
         class="card__infos"
         :color="color"
@@ -23,12 +27,15 @@
         :pop="pop"
         :specialite="specialite"
       />
+      <!--Importation de la card_news-->
       <card_news :color="color" :colorText="colorText" :chemin="chemin" />
     </div>
   </div>
 </template>
 
+<!--Styles de la card_pays-->
 <style lang="scss" scoped>
+// Styles du bloc contenant l'ensemble des cards
 .card {
   margin: 0;
   background-image: url("/Italie.jpg");
@@ -41,6 +48,7 @@
     padding: 15% 0px;
   }
 
+  // Styles de la card_info
   &__infos {
     margin-top: rem(50);
     @include large-up {
@@ -48,6 +56,7 @@
     }
   }
 
+  // Styles du bloc contenant card_info et card_news
   &__content {
     display: flex;
     flex-direction: column;
@@ -62,6 +71,21 @@
 }
 </style>
 
+<!--Création des props
+heure contient le chemin à mettre dans la requête de l'API pour obtenir l'heure du pays
+nom contient le nom du pays
+latitude contient la latitude de la capitale du pays
+longitude contient la longitude de la capitale du pays
+color contient le code hexadécimal de la couleur du contenu à utiliser
+colorText contient le code hexadécimal de la couleur du texte à utiliser
+img_dra contient le chemin vers l'image du drapeau dans la BDD
+img_spe contient le chemin vers l'image de la specialite dans la BDD
+pop contient l'information de la population du pays
+superficie contient l'information de la superficie du pays
+capitale contient le nom de l acapitale du pays
+specialite contient le nom de la specialite du pays
+langue contient le nom de la langue officielle du pays
+chemin contient le chemin à mettre dans la requête pour obtenir les news du pays -->
 <script>
 export default {
   props: {
