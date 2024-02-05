@@ -20,5 +20,10 @@ export default defineNuxtConfig({
         }
       }
     }
-  }
+  },
+  head: {
+  link: [
+    { rel: 'icon', type: 'image/png', href: '/soleil.png' }, // Assurez-vous de mettre le bon nom de fichier et l'extension
+  ],
+},
 })
