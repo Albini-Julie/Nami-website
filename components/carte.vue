@@ -70,7 +70,6 @@ const props = defineProps([
 
 // Customisation des marqueurs (changement de couleurs)
 const iconUti = ref("");
-console.log(props.secondaryColor);
 switch (props.secondaryColor) {
   case "#00FFA3":
     iconUti.value = "/marqueurs/vert_eau.png";

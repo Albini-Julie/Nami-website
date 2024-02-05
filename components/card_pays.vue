@@ -1,7 +1,7 @@
 <!--Intégration de la card pays-->
 <template>
   <!--Bloc contenant l'ensemble de la carte-->
-  <div class="card">
+  <div class="card" :style="{ backgroundImage: 'url(' + img_pay + ')' }">
     <!--Importation de la card intro-->
     <card_intro
       :heure="heure"
@@ -38,11 +38,11 @@
 // Styles du bloc contenant l'ensemble des cards
 .card {
   margin: 0;
-  background-image: url("/Italie.jpg");
-  background-size: cover; /* Utilisez "contain" à la place si vous préférez que l'image soit contenue dans toute la zone */
-  background-position: center; /* Ajustez la position si nécessaire */
+
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
-  height: 100%; /* Assurez-vous que la*/
+  height: 100%;
   padding: 30% 0px;
   @include large-up {
     padding: 15% 0px;
@@ -80,6 +80,7 @@ color contient le code hexadécimal de la couleur du contenu à utiliser
 colorText contient le code hexadécimal de la couleur du texte à utiliser
 img_dra contient le chemin vers l'image du drapeau dans la BDD
 img_spe contient le chemin vers l'image de la specialite dans la BDD
+img_pay contient le chemin vers l'image du pays dans la BDD
 pop contient l'information de la population du pays
 superficie contient l'information de la superficie du pays
 capitale contient le nom de l acapitale du pays
@@ -99,6 +100,7 @@ export default {
     colorText: String,
     img_dra: String,
     img_spe: String,
+    img_pay: String,
     pop: String,
     superficie: String,
     capitale: String,
