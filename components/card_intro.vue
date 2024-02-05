@@ -406,7 +406,7 @@ export default {
     @include large-up {
       flex-direction: row;
       justify-content: space-evenly;
-      align-items: start;
+      align-items: flex-start;
     }
     @include x-large-up {
       justify-content: space-evenly;

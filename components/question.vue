@@ -231,7 +231,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    align-items: start;
+    align-items: flex-start;
     padding: 0px 20px;
     @include medium-up {
       padding: 0px 50px;
@@ -251,7 +251,7 @@ export default {
     }
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
     justify-content: center;
     color: v-bind(colorText);
   }
@@ -260,7 +260,7 @@ export default {
   &__prop {
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     gap: rem(30);
     cursor: pointer;
