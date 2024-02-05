@@ -168,6 +168,13 @@ const getEnseign = (latitude, longitude) => {
           secondaryColorText.value = "#FFFFFF";
           break;
 
+        case "chutes de neige":
+          primaryColor.value = "#FF63DD";
+          secondaryColor.value = "#001F8B";
+          primaryColorText.value = "#000000";
+          secondaryColorText.value = "#FFFFFF";
+          break;
+
         case "chutes de neige modérées":
           primaryColor.value = "#FF63DD";
           secondaryColor.value = "#001F8B";
@@ -190,6 +197,13 @@ const getEnseign = (latitude, longitude) => {
           break;
 
         case "brume":
+          primaryColor.value = "#00FFFF";
+          secondaryColor.value = "#7A7A7A";
+          primaryColorText.value = "#000000";
+          secondaryColorText.value = "#FFFFFF";
+          break;
+
+        case "brume sèche":
           primaryColor.value = "#00FFFF";
           secondaryColor.value = "#7A7A7A";
           primaryColorText.value = "#000000";

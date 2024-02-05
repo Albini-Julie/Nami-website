@@ -1,16 +1,21 @@
+<!--Intégation de la card news-->
 <template>
+  <!--Bloc contenant les actualités et le titre-->
   <div class="news">
     <!-- Titre actualité -->
     <div class="news__actualite">
       <h2>l'actu</h2>
       <h2>alité</h2>
     </div>
+    <!--Bloc contenant une actualité-->
     <div
       class="news__bloc"
       v-for="(article, index) in news.slice(0, 3)"
       :key="index"
     >
+      <!--Titre de l'actualité-->
       <h3 class="news__text">{{ article.title }}</h3>
+      <!--Bouton vers l'actualité-->
       <Button :color="color" :colorText="colorText" :url="article.url"
         >Lire l'article</Button
       >
@@ -19,6 +24,7 @@
 </template>
 
 <style lang="scss" scoped>
+// Styles du bloc général
 .news {
   display: flex;
   flex-direction: column;
@@ -26,6 +32,7 @@
   gap: 10px;
   width: 90%;
 
+  // Styles du bloc actualité (titre)
   &__actualite {
     display: block;
     font-size: $bigger-font-size;
@@ -49,12 +56,14 @@
     }
   }
 
+  // Styles des textes
   &__text {
     font-family: $primary-font-family;
     font-weight: 400;
     font-size: rem(30);
   }
 
+  // Styles du bloc contenant l'actualité
   &__bloc {
     flex-direction: column;
     background-color: hsla(0, 0%, 100%, 0.6);
@@ -84,9 +93,14 @@
 </style>
 
 <script>
+// Importations des outils utiles
 import { ref, onMounted, watch } from "vue";
 import axios from "axios";
 
+// Création des props
+// color contient la couleur à utiliser pour le contenu
+// colorText contient la couleur à utiliser pour les textes
+// chemin contient la valeur à mettre dans la requête des news de chaque pays
 export default {
   props: {
     color: String,
@@ -94,6 +108,10 @@ export default {
     chemin: String,
   },
   setup(props) {
+    // Création des refs utiles
+    // news est un tableau qui contient toutes les news du pays
+    // loading peut permettre une temporisation qui n'est pas mise en place ici
+    // error contient le texte d'une éventulle erreur
     const news = ref([]);
     const loading = ref(false);
     const error = ref(null);
@@ -101,6 +119,7 @@ export default {
     const apiKey = "184ad7f83e464ccb982bec4e72aa2c91";
     const baseUrl = "https://newsapi.org/v2/top-headlines";
 
+    // Fonction du récupère les news du pays
     const getNews = async () => {
       loading.value = true;
 
@@ -124,10 +143,12 @@ export default {
       }
     );
 
+    // Au montage du composant appel de la fonction getNews pour obtenir les news du pays
     onMounted(() => {
       getNews();
     });
 
+    // Récupération des variables pour les utiliser dans le template
     return { news, loading, error };
   },
 };

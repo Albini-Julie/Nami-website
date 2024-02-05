@@ -1,7 +1,12 @@
+<!--Intégration de l'introduction-->
 <template>
+  <!--Bloc contenant toute l'introduction-->
   <div class="introduction">
+    <!--Première partie du titre-->
     <h1 class="introduction__title">Le site qui vous ouvre</h1>
+    <!--Deuxième partie du titre-->
     <h1 class="introduction__title --monde">au monde</h1>
+    <!--Icon Fleche-->
     <div class="introduction__icon">
       <IconsFleche id="scrollButton" />
     </div>
@@ -9,6 +14,7 @@
 </template>
 
 <style lang="scss" scoped>
+// Styles du bloc contenant toute l'introduction
 .introduction {
   margin: 0; /* Ajustez les marges selon vos besoins */
   padding: 0; /* Ajustez les rembourrages selon vos besoins */
@@ -20,6 +26,7 @@
   background-repeat: no-repeat;
   background-size: cover;
 
+  // Styles de l'icon
   &__icon {
     position: absolute;
     bottom: 15%;
@@ -27,6 +34,7 @@
     transform: translateX(-50%);
   }
 
+  // Styles des titres
   &__title {
     position: relative;
     color: $secondary-color;
@@ -52,6 +60,7 @@
       padding-right: 0px;
     }
 
+    // Styles de la seconde partie du titre
     &.--monde {
       text-transform: uppercase;
       color: v-bind(primaryColor);
@@ -69,12 +78,14 @@
     }
   }
 }
-
-//curseur
 </style>
 
 <script>
-//curseur
+// Création des props
+// primaryColor contenant le code hexadécimal de la première couleur à utiliser pour le contenu
+// secondaryColor contenant le code hexadécimal de la seconde couleur à utiliser pour le contenu
+// primaryColorText contenant le code hexadécimal de la couleur à utiliser pour le texte du contenu utilisant primaryColor
+// secondaryColorText contenant le code hexadécimal de la couleur à utiliser pour le texte du contenu utilisant secondaryColor
 export default {
   props: {
     primaryColor: String,

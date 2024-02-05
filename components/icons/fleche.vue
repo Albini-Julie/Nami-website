@@ -1,3 +1,4 @@
+<!--SVG de l'icon-->
 <template>
   <svg
     width="60"

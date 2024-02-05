@@ -1,3 +1,5 @@
+// Importation de la base de données Firebase
+
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 

@@ -1,3 +1,4 @@
+<!--SVG de l'icon-->
 <template>
   <svg
     viewBox="0 0 80 80"

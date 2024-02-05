@@ -2,6 +2,7 @@
 
 $baseFontSize: 16;
 
+// Fonction pour converir les pixels en rem
 @function rem($valueInPx) {
     @return math.div($valueInPx, $baseFontSize)+rem;
 }

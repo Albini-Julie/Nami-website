@@ -1,3 +1,5 @@
+// Création des mixins pour gérer les styles selon la taille de l'écran
+
 @mixin only-small {
     @media screen and (max-width: $small) {
         @content;
