@@ -1,10 +1,12 @@
 <template>
+  <!--Importation du composant introduction-->
   <introduction
     :primaryColor="primaryColor"
     :secondaryColor="secondaryColor"
     :primaryColorText="primaryColorText"
     :secondaryColorText="secondaryColorText"
   />
+  <!--Importation du composant meteo-->
   <meteo
     :primaryColor="primaryColor"
     :secondaryColor="secondaryColor"
@@ -16,13 +18,16 @@
     :temp_max="temp_max"
     :weather="weather"
   />
+  <!--Importation du composant pays-->
   <pays
     :primaryColor="primaryColor"
     :secondaryColor="secondaryColor"
     :primaryColorText="primaryColorText"
     :secondaryColorText="secondaryColorText"
   />
+  <!--Importation du composant question-->
   <question :color="secondaryColor" :colorText="secondaryColorText" />
+  <!--Importation du composant carte-->
   <carte
     v-if="showMap"
     :secondaryColor="secondaryColor"
@@ -31,26 +36,27 @@
     :longitudeUti="coordMe.longitude"
     :ville="ville"
   />
+  <!--Importation du composant footer-->
   <Footer titre="Mentions légales" lien="/mentionslegales" />
 </template>
 
 <script setup>
 //import éléments de vue
 import { reactive, ref } from "vue";
-import {
-  latitude1,
-  latitude2,
-  latitude3,
-  longitude1,
-  longitude2,
-  longitude3,
-  capitale1,
-  capitale2,
-  capitale3,
-} from "@/config.js";
 
+// Création d'une ref showMap qui permet de gérer l'affichage de la map
 const showMap = ref(false);
 
+// Création de ref
+// primaryColor contient le code hexadécimal de la première couleur du contenu, ici elle a une valeur par défaut
+// secondaryColor contient le code hexadécimal de la seconde couleur du contenu, ici elle a une valeur par défaut
+// primaryColorText contient le code hexadécimal de la couleur à utiliser pour les textes du contenu primaryColor, ici elle a une valeur par défaut
+// secondaryColorText contient le code hexadécimal de la couleur à utiliser pour les textes du contenu secondaryColor, ici elle a une valeur par défaut
+// ville contient le nom de la ville où se trouve l'utilisateur
+// temp_act contient la température actuelle chez l'utilisateur
+// temp_min contient la température minimale qu'il fera chez l'utilisateur
+// temp_max contient la température maximale qu'il fera chez l'utilisateur
+// weather contient la météo qu'il fait chez l'utilisateur
 let primaryColor = ref("#D00000");
 let secondaryColor = ref("#FFF500");
 let primaryColorText = ref("#FFFFFF");
@@ -61,6 +67,7 @@ let temp_min = ref("");
 let temp_max = ref("");
 let weather = ref("");
 
+// Création de coordMe qui contiendra les données de géolication de l'utilisateur
 const coordMe = reactive({ latitude: 0, longitude: 0 });
 
 //Fonction de détection de la géolocalisation via navigateur
@@ -72,7 +79,7 @@ const locMe = () => {
 };
 //Fonction de sa localisation si elle réussit
 const showLocation = (position) => {
-  //Récupération latitude et longitude
+  //Récupération latitude et longitude de l'utilisateur
   coordMe.latitude = position.coords.latitude;
   coordMe.longitude = position.coords.longitude;
 
@@ -80,6 +87,7 @@ const showLocation = (position) => {
   getEnseign(coordMe.latitude, coordMe.longitude);
 };
 
+// Récupération des données de météo de l'utilisateur
 const getEnseign = (latitude, longitude) => {
   fetch(
     //`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&lang=fr&appid=50c7f1c20b813764c0e648ea2b791165&units=metric`
@@ -96,14 +104,18 @@ const getEnseign = (latitude, longitude) => {
       console.log(data);
       //données
       const meteo = document.getElementById("meteo");
+      // Récupération de la température actuelle dans temp_act
       temp_act.value = data.main.temp;
+      // Récupération de la température minimale dans temp_min
       temp_min.value = data.main.temp_min;
+      // Récupération de la température maximale dans temp_max
       temp_max.value = data.main.temp_max;
+      // Récupération de la météo dans weather
       weather.value = data.weather[0].description;
-
+      //Récupération du nom de la ville dans ville
       ville.value = data.name;
-      //changement de la couleur
 
+      //changement de la couleur selon la météo (valeur de weather)
       switch (weather.value) {
         case "couvert":
           primaryColor.value = "#AD00FF";
@@ -238,8 +250,6 @@ const getEnseign = (latitude, longitude) => {
           secondaryColorText.value = "#000000";
           break;
       }
-
-      // Use the data as needed in your application
     })
     .catch((error) => {
       console.error("Fetch Error:", error);
