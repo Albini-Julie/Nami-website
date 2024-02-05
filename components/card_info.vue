@@ -167,7 +167,7 @@
   // Styles contenant 1 info et un icon
   &__content {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     gap: rem(20);
     width: 100%;
@@ -180,8 +180,8 @@
   &__BigContent {
     display: flex;
     flex-direction: column;
-    justify-content: start;
-    align-items: start;
+    justify-content: flex-start;
+    align-items: flex-start;
     gap: rem(20);
   }
 
