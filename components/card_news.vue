@@ -116,8 +116,7 @@ export default {
     const loading = ref(false);
     const error = ref(null);
 
-    const apiKey = "184ad7f83e464ccb982bec4e72aa2c91";
-    const baseUrl = "https://newsapi.org/v2/top-headlines";
+    const apiKey = "abd496f36be2d59f8ffa49c50b274b52";
 
     // Fonction du récupère les news du pays
     const getNews = async () => {
@@ -125,7 +124,7 @@ export default {
 
       try {
         const response = await axios.get(
-          `${baseUrl}?country=${props.chemin}&apiKey=${apiKey}`
+          `https://gnews.io/api/v4/top-headlines?country=${props.chemin}&token=${apiKey}`
         );
         news.value = response.data.articles;
       } catch (err) {
